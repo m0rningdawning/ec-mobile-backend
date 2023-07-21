@@ -1,10 +1,7 @@
 import * as http from "http";
 import * as os from "os";
-
-type ServerType = {
-  req: any;
-  res: any;
-};
+import * as express from "express";
+import { readEmails } from "./reader";
 
 const port: number = 3000;
 
@@ -34,20 +31,29 @@ const getLocalAddress = () => {
   return localAddress;
 };
 
-const server = http.createServer(
-  (req: ServerType["req"], res: ServerType["res"]) => {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.write("Hello, Node.js server!");
-    res.end();
-  }
-);
+const app = express();
+app.use(express.json());
+
+app.head("/", (req, res) => {
+  res.sendStatus(200);
+});
+
+app.post("/get-emails", (req, res) => {
+  const credentials = req.body;
+  readEmails(req, res, credentials);
+});
+
+app.get('*', (req, res) => {
+  res.send('The server is up and running.');
+});
+
+const server = http.createServer(app);
 
 server.listen(port, () => {
   console.log(`Server is running on http://${getLocalAddress()}:${port}`);
 });
 
 function shutdown() {
-  console.log("Shutting down server gracefully...");
   server.close(() => {
     console.log("Server closed. Exiting process.");
     process.exit(0);
