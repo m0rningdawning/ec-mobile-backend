@@ -38,7 +38,7 @@ app.head("/", (req, res) => {
   res.sendStatus(200);
 });
 
-app.post("/", (req, res) => {
+app.post("/get-emails", (req, res) => {
   const credentials = req.body;
   readEmails(req, res, credentials);
 });
