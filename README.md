@@ -2,6 +2,11 @@
 
 NodeJS server for the email-checker-mobile app.
 
+![GitHub language count](https://img.shields.io/github/languages/count/m0rningdawning/ec-mobile-backend)
+![GitHub top language](https://img.shields.io/github/languages/top/m0rningdawning/ec-mobile-backend) 
+![GitHub last commit](https://img.shields.io/github/last-commit/m0rningdawning/ec-mobile-backend)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 ## Running the server
 
 Before starting the server run `npm install` to install all dependencies.
